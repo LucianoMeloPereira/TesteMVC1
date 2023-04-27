@@ -9,31 +9,21 @@ namespace TesteMVC1.Controllers
 {
     public class AlunoController : Controller
     {
+        [HttpGet]
         [Route("novo-aluno")]
-        public ActionResult Novo(Aluno aluno)
+        public ActionResult NovoAluno()
         {
-            aluno = new Aluno
-            {
-                Id= 1,
-                Nome = "Luciano",
-                CPF = "12345678945",
-                DataMatricula = DateTime.Now,
-                Email = "luciano.melo@gmail.com",
-                Ativo = true
-            };
-
-            //Redirecionando o resultado aluno desta action para action Index
-            return RedirectToAction("Index", aluno);
+            return View();
         }
 
-        //Passando o aluno como um dado no parametro da action Index
-        public ActionResult Index(Aluno aluno)
-        {   
-            //Está sendo validado pelo modelState " se estado da model não for valida mostre o aluno com os dataNottations
-            //requerindo os dados corretos e se estiver tudo ok, mostre o aluno
-            if(!ModelState.IsValid) return View(aluno);
-
+        [HttpPost]
+        [Route("novo-aluno")]
+        public ActionResult NovoAluno(Aluno aluno)
+        {
+            if (!ModelState.IsValid);
+            //Alguma regra de negocio + salvar no banco
             return View(aluno);
         }
+
     }
 }
